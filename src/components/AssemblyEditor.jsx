@@ -5,9 +5,11 @@ import * as Blockly from 'blockly/core';
 import * as libraryBlocks from 'blockly/blocks';
 import { javascriptGenerator } from 'blockly/javascript';
 import * as En from 'blockly/msg/en';
-import Link from 'next/link';
 
-Blockly.setLocale(En);
+try {
+    Blockly.setLocale(En);
+} catch (e) {
+}
 
 export default function AssemblyEditor() {
     const blocklyDiv = useRef(null);
@@ -548,11 +550,11 @@ export default function AssemblyEditor() {
             
             {/* back button */}
             <div>
-                <Link href="/">
+                <a href="/">
                     <button className="bg-yellow-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded gap-2 mt-4">
                         Back
                     </button>
-                </Link>
+                </a>
             </div>
         </div>
     </div>

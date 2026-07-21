@@ -14,7 +14,7 @@ export default function HugeCircle({target}:{target?:string}){
         }
     }
     return(
-        <div className="min-h-screen w-full bg-center bg-cover bg-no-repeat flex items-center justify-center"style={{backgroundImage:"url('/images/others/Bg_first.jpg')"}}>
+        <div className="min-h-screen w-full bg-center bg-cover bg-no-repeat flex items-center justify-center" style={{backgroundImage:"url('/images/others/Bg_first.jpg')"}}>
             <div className="min-h-screen w-full absolute inset-0 bg-black/75"></div>
             <div className="relative z-10 text-white text-center">
 

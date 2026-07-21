@@ -16,6 +16,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.0.0",
     "astro-icon": "^1.1.5",
+    "blockly": "^13.1.1",
     "marked": "^18.0.4",
     "normalize.css": "^8.0.1",
     "react": "^19.2.7",
