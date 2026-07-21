@@ -6,7 +6,6 @@ author: "Surname, Firstname; Surname2, Firstname2"
 readingTime: "30 minutes"
 ---
 
-import ExhibitLayout from "../layouts/ExhibitLayout.astro";
 import TopPage from "../components/view_mainPage/TopPage";
 import Navigation from "../components/view_mainPage/Navigation";
 import PanelL from "../components/view_mainPage/PanelL";
@@ -15,9 +14,124 @@ import TimelineCircle from "../components/view_mainPage/TimelineCircle";
 import CreatorsCircle from "../components/view_mainPage/CreatorsCircle";
 import Footer from "../components/view_mainPage/Footer";
 import AssemblyEditor from "../components/AssemblyEditor";
+import IntroductionCarousel from "../components/view_mainPage/IntroductionCarousel";
+import { Timeline } from "react-alternating-timeline";
+import { timelineItems } from "../components/timelineData";
+import TextWithImage from "../components/TextWithImage.astro";
+import ImageGallery from "../components/ImageGallery.jsx";
+
+import timeline1 from "../assets/Timeline1.png";
+import timeline2 from "../assets/Timeline2.png";
+import timeline3 from "../assets/Timeline3.png";
+import timeline4 from "../assets/Timeline4.png";
 
 # From 0's and 1's to Assembly: History of the x86-64 CISC Assembly Language
 
 ## Introduction
 
-Assembly Language is a low-level language that allows programmers to communicate directly with computer hardware, offering more speed, space, and capability than most high-level languages. But before x86-64, ARM, MIPS–and the more popular assembly languages used today, computer scientists had to communicate directly with hardware using long strings of 0s and 1s. The history of assembly language can be traced back several decades, evolving from Alan Turing’s Enigma code machine in 1939, John Von Neumann’s stored-program concept in the 1940s, Maruice Wilkes EDSAC in 1949, and Grace Hopper’s symbolic programming concepts in 1952 to the well-known assembly languages we use today, assembly language has seen many breakthroughs and contributions to modern technology, one of them being the invention of x86-64 NASM assembly language (Alheraki, 2025).
+Assembly Language is a low-level language that allows programmers to communicate
+directly with computer hardware, offering more speed, space, and capability than
+most high-level languages. But before x86-64, ARM, MIPS–and the more popular
+assembly languages used today, computer scientists had to communicate directly
+with hardware using long strings of 0s and 1s. The history of assembly language
+can be traced back several decades, evolving from Alan Turing’s Enigma
+code machine in 1939, John Von Neumann’s stored-program concept in the 1940s,
+Maruice Wilkes EDSAC in 1949, and Grace Hopper’s symbolic programming concepts
+in 1952 to the well-known assembly languages we use today, assembly language has
+seen many breakthroughs and contributions to modern technology, one of them being
+the invention of x86-64 NASM assembly language (Alheraki, 2025).
+
+<ImageGallery client:only="react" />
+
+## History of x86: A timeline!
+
+{/* Custom Timeline Section using TextWithImage */}
+
+<div className="bg-white py-16 px-4 md:px-12 w-full text-[#111844] font-[Baskerville]">
+
+    {/* Timeline Container */}
+    <div className="max-w-5xl mx-auto space-y-24 relative before:absolute before:inset-0 before:left-1/2 before:w-0.5 before:bg-[#111844] before:-translate-x-1/2 hidden md:block">
+
+        <TextWithImage
+            heading="ENIAC (1945)"
+            body="In 1943 to 1945, one of the earliest electronic computers was in development called the ENIAC which is a large-scaled piece of technology that uses plugboards to send information."
+            imageSrc={timeline1.src}
+            imageAlt="ENIAC Computer"
+            imageCaption="ENIAC machine architecture"
+            reverse={false}
+        />
+
+        <TextWithImage
+            heading="UNIVAC (1951)"
+            body="Then in 1951, the UNIVAC became the first digital computer to be commercialized in the United States with using magnetic tape to handle input and output."
+            imageSrc={timeline2.src}
+            imageAlt="UNIVAC Computer"
+            imageCaption="UNIVAC system"
+            reverse={true}
+        />
+
+        <TextWithImage
+            heading="IBM 701 (1952)"
+            body="Following after the UNIVAC, the IBM 701 became the first commercial scientific computer containing a maximum memory of 2048, 36-bit words and each instruction set containing 18 bits."
+            imageSrc={timeline3.src}
+            imageAlt="IBM 701 Computer"
+            imageCaption="IBM 701 mainframe"
+            reverse={false}
+        />
+
+        <TextWithImage
+            heading="CDC 6600 (1964)"
+            body="In 1964, the CDC 6600 developed by Control Data Corporation was considered the first supercomputer and also a reduced instruction set computer (RISC) with an architecture of 65 instructions."
+            imageSrc={timeline4.src}
+            imageAlt="CDC 6600 Supercomputer"
+            imageCaption="CDC 6600 system"
+            reverse={true}
+        />
+
+    </div>
+
+</div>
+
+**Disclosure on the use of AI/LLM**
+
+AI was used only as a reference tool for quick lookups of correct syntax and debugging in front-end development. It was not used to blindly generate entire sections of code, nor was it used to generate content for the website. Instead, it was used to check the clarity and the accuracy of the information found on the website.
+
+## References:
+
+Alheraki, A. (2025). The history of assembly language and CPU architectures. simplifycpp. https://simplifycpp.org/books/Assembly_Language_History.pdf
+
+CDC 6600 | Computational and Information Systems Lab. (n.d.). Www.Cisl.Ucar.Edu. Retrieved July 7, 2026, from https://www.cisl.ucar.edu/ncar-supercomputing-history/cdc6600
+
+Control Data Corporation. (1967, April). 6400/6500/6600 COMPUTER SYSTEMS COMPASS Reference Manual. Palo Alto; Control Data Corporation. https://www.bitsavers.org/pdf/cdc/cyber/lang/compass/60190900_COMPASS_Reference_Manual_196704.pdf
+
+Doug Jones. (n.d.). Doug Jones's computer program punched Card Collection. A Collection of Punched Cards for Computer Programs. https://landley.net/history/mirror/pre/punchedcards/collection/i-program.html
+
+Eckert and Mauchly Develop the ENIAC | EBSCO. (2023). EBSCO Information Services, Inc. | Www.Ebsco.Com. https://www.ebsco.com/research-starters/computer-science/eckert-and-mauchly-develop-eniac
+
+ENIAC (Electronic Numerical Integrator And Computer) - definition | Transfer Multisort Elektronik. (2025). TME. https://www.tme.eu/en/news/library-articles/glossary/page/68902/eniac-electronic-numerical-integrator-and-computer-definition/
+
+Evans, D. (n.d.). X86 assembly guide. Guide to x86 Assembly. https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
+
+Freiberger, P. A., & Swaine, M. R. (2018). ENIAC. In Encyclopædia Britannica. https://www.britannica.com/technology/ENIAC
+
+Freiberger, P. A., & Swaine, M. R. (n.d.). UNIVAC | computer. Encyclopedia Britannica. Retrieved July 7, 2026, from https://www.britannica.com/technology/UNIVAC
+
+GeeksforGeeks. (2024, February 26). What Is the Full Form of UNIVAC? GeeksforGeeks. https://www.geeksforgeeks.org/computer-organization-architecture/what-is-the-full-form-of-univac/
+
+George Gray (1999). UNIVAC I Instruction Set - Folklore https://ptacts.uspto.gov/ptacts/public-informations/petitions/1464240/download-documents?artifactId=Wc9j3Pypuj72GUOhGdt8ZP0WHA4pvFj-ndms5ZVMRLqWQvnHBEio1TQ
+
+History.com Editors. (2010, July 20). UNIVAC, the first commercially produced digital computer in the U.S, is dedicated | June 14, 1951 | HISTORY. History. https://www.history.com/this-day-in-history/june-14/univac-computer-dedicated
+
+HP. (2022). Computer History: All About the ENIAC. Hp.Com; HP. https://www.hp.com/gb-en/shop/tech-takes/computer-history-all-about-the-eniac
+
+IBM. (n.d.). IBM 700 Series. Www.Ibm.Com. Retrieved July 7, 2026, from https://www.ibm.com/history/700
+
+Introduction to x86 Assembly Programming. Adwaith's Chronicles. (2018, August 12). https://www.agautham.io/rebeseries/2018/08/12/introduction-to-x86-assembly-programming.html
+
+Simon Tatham: About Me. (2018). Greenend.Org.Uk. https://www.chiark.greenend.org.uk/~sgtatham/me.html
+
+Timeline: A brief history of the x86 microprocessor. (n.d.). Computerworld. Retrieved July 7, 2026, from https://www.computerworld.com/article/1575191/timeline-a-brief-history-of-the-x86-microprocessor.html
+
+US Census Bureau. (2024, August 19). UNIVAC I. Census.Gov. https://www.census.gov/about/history/bureau-history/census-innovations/technology/univac-i.html
+
+x86assembly. (n.d.). Cs.Lmu.Edu. Retrieved July 7, 2026, from https://cs.lmu.edu/~ray/notes/x86assembly/
