@@ -9,19 +9,22 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
-    "@astrojs/react": "^4.0.0",
+    "@astrojs/react": "^6.0.1",
     "@fontsource-variable/lora": "^5.2.8",
     "@fontsource-variable/noto-sans": "^5.2.10",
     "@iconify-json/ic": "^1.2.4",
+    "@tailwindcss/vite": "^4.3.3",
     "astro": "^5.0.0",
     "astro-icon": "^1.1.5",
     "marked": "^18.0.4",
     "normalize.css": "^8.0.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-icons": "^5.7.0",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.1"
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3"
   }
 }
