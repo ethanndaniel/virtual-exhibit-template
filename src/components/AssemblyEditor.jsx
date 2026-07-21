@@ -477,86 +477,79 @@ export default function AssemblyEditor() {
 
     // MAIN // 
     return (
-        //Hi gabe, just added the back button here
-    <div className="flex flex-col min-h-screen bg-stone-200 p-2 sm:p-4">
-        <div className="flex flex-col lg:flex-row h-auto lg:h-[650px] w-full gap-4 bg-stone-100 p-3 sm:p-4 rounded-xl border border-stone-200">
-            {/* workspace! */}
-            <div 
-                ref={blocklyDiv} 
-                className="w-full lg:w-2/3 h-[400px] lg:h-full rounded border bg-white shadow-inner min-h-[350px]" 
-            />
-            
-            {/* output display */}
-            <div className="w-full lg:w-1/3 h-[450px] lg:h-full flex flex-col gap-3 overflow-y-auto">
-                <h2 className="font-bold text-black mb-1">Output Display</h2>
+        <div className="w-full bg-stone-900 border border-stone-800 p-6 rounded-2xl shadow-2xl my-6 not-prose">
+            <div className="mb-4">
+                <h3 className="text-xl font-bold font-[Georgia] text-white">x86-64 Interactive Assembly Workspace</h3>
+                <p className="text-sm text-stone-400 font-[Perpetua]">Drag and drop instruction blocks below, then run the simulation to track register mutations.</p>
+            </div>
 
-                {/* output display: registers */}
-                <div className="flex-grow bg-stone-950 text-emerald-400 p-4 font-mono text-xs rounded shadow overflow-auto whitespace-pre">
-                    <h2 className="font-bold mb-2">Registers</h2>
+            {/* Explicit width and flex sizing to prevent layout collapse */}
+            <div className="flex flex-col lg:flex-row w-full gap-4 bg-stone-950 p-4 rounded-xl border border-stone-800">
+                
+                {/* Workspace container with a solid forced height */}
+                <div 
+                    ref={blocklyDiv} 
+                    className="w-full lg:w-2/3 h-[500px] rounded-lg border border-stone-700 bg-white shadow-inner relative block" 
+                />
+                
+                {/* Output display container */}
+                <div className="w-full lg:w-1/3 h-[500px] flex flex-col gap-3">
+                    <h4 className="font-bold text-stone-200 text-sm font-[Georgia]">Output Display</h4>
 
-                    {/* display all registers*/}
-                    <div className="mb-3">
-                        <p>RAX: {formatHex(readRegister("rax", registers), 64)}</p>
-                        <p>EAX: {formatHex(readRegister("eax", registers), 32)}</p>
-                        <p>AX: {formatHex(readRegister("ax", registers), 16)}</p>
-                        <p>AH: {formatHex(readRegister("ah", registers), 8)}</p>
-                        <p>AL: {formatHex(readRegister("al", registers), 8)}</p>
+                    <div className="flex-grow bg-black text-emerald-400 p-4 font-mono text-xs rounded-lg border border-stone-800 shadow-inner overflow-y-auto whitespace-pre">
+                        <div className="text-stone-400 font-bold mb-2 uppercase tracking-wider text-[10px]">Registers State</div>
+
+                        <div className="mb-3">
+                            <p>RAX: {formatHex(readRegister("rax", registers), 64)}</p>
+                            <p>EAX: {formatHex(readRegister("eax", registers), 32)}</p>
+                            <p>AX: {formatHex(readRegister("ax", registers), 16)}</p>
+                            <p>AH: {formatHex(readRegister("ah", registers), 8)}</p>
+                            <p>AL: {formatHex(readRegister("al", registers), 8)}</p>
+                        </div>
+                        
+                        <div className="mb-3">
+                            <p>RBX: {formatHex(readRegister("rbx", registers), 64)}</p>
+                            <p>EBX: {formatHex(readRegister("ebx", registers), 32)}</p>
+                            <p>BX: {formatHex(readRegister("bx", registers), 16)}</p>
+                            <p>BH: {formatHex(readRegister("bh", registers), 8)}</p>
+                            <p>BL: {formatHex(readRegister("bl", registers), 8)}</p>
+                        </div>
+                        
+                        <div className="mb-3">
+                            <p>RCX: {formatHex(readRegister("rcx", registers), 64)}</p>
+                            <p>ECX: {formatHex(readRegister("rcx", registers), 32)}</p>
+                            <p>CX: {formatHex(readRegister("cx", registers), 16)}</p>
+                            <p>CH: {formatHex(readRegister("cx", registers), 8)}</p>
+                            <p>CL: {formatHex(readRegister("cl", registers), 8)}</p>
+                        </div>
+
+                        <div className="mb-3">
+                            <p>RDX: {formatHex(readRegister("rdx", registers), 64)}</p>
+                            <p>EDX: {formatHex(readRegister("rdx", registers), 32)}</p>
+                            <p>DX: {formatHex(readRegister("dx", registers), 16)}</p>
+                            <p>DH: {formatHex(readRegister("dx", registers), 8)}</p>
+                            <p>DL: {formatHex(readRegister("dl", registers), 8)}</p>
+                        </div>
                     </div>
-
-                    
-                    <div className="mb-3">
-                        <p>RBX: {formatHex(readRegister("rbx", registers), 64)}</p>
-                        <p>EBX: {formatHex(readRegister("ebx", registers), 32)}</p>
-                        <p>BX: {formatHex(readRegister("bx", registers), 16)}</p>
-                        <p>BH: {formatHex(readRegister("bh", registers), 8)}</p>
-                        <p>BL: {formatHex(readRegister("bl", registers), 8)}</p>
-                    </div>
-
-                    
-                    <div className="mb-3">
-                        <p>RCX: {formatHex(readRegister("rcx", registers), 64)}</p>
-                        <p>ECX: {formatHex(readRegister("ecx", registers), 32)}</p>
-                        <p>CX: {formatHex(readRegister("cx", registers), 16)}</p>
-                        <p>CH: {formatHex(readRegister("ch", registers), 8)}</p>
-                        <p>CL: {formatHex(readRegister("cl", registers), 8)}</p>
-                    </div>
-
-                    <div className="mb-3">
-                        <p>RDX: {formatHex(readRegister("rdx", registers), 64)}</p>
-                        <p>EDX: {formatHex(readRegister("edx", registers), 32)}</p>
-                        <p>DX: {formatHex(readRegister("dx", registers), 16)}</p>
-                        <p>DH: {formatHex(readRegister("dh", registers), 8)}</p>
-                        <p>DL: {formatHex(readRegister("dl", registers), 8)}</p>
-                    </div>
-
                 </div>
             </div>
-        </div>
 
-        <div className="flex flex-wrap gap-3 mt-4">
-            {/* run simulation button */}
-            <div className="flex gap-4 mt-4">
-                <button onClick={runSimulation}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Run
-                </button>
-            </div>
-
-            {/* reset button */}
-            <div>
-                <button onClick={resetRegisters} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded gap-2 mt-4">
-                    Reset
-                </button>
-            </div>
-            
-            {/* back button */}
-            <div>
-                <a href="/">
-                    <button className="bg-yellow-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded gap-2 mt-4">
-                        Back
+            {/* Controls row */}
+            <div className="flex flex-wrap gap-4 mt-6 items-center justify-between border-t border-stone-800 pt-4">
+                <div className="flex gap-3">
+                    <button onClick={runSimulation} className="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-lg shadow transition-all cursor-pointer">
+                        Run Simulation
+                    </button>
+                    <button onClick={resetRegisters} className="bg-stone-700 hover:bg-stone-600 text-white font-bold py-2 px-6 rounded-lg shadow transition-all cursor-pointer">
+                        Reset Registers
+                    </button>
+                </div>
+                <a href={`${import.meta.env.BASE_URL}`}>
+                    <button className="bg-stone-800 hover:bg-stone-700 text-stone-300 font-bold py-2 px-5 rounded-lg shadow border border-stone-700 transition-all cursor-pointer">
+                        Back to Home
                     </button>
                 </a>
             </div>
         </div>
-    </div>
-  );
+    );
 }
